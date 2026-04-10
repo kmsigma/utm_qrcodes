@@ -50,16 +50,12 @@ The app listens on `http://localhost:5000` by default. Open that URL in a browse
 
 ## Docker
 
-### Build the image
+### Quick start
+
+Pull the image from Docker Hub and run it:
 
 ```bash
-docker build -t utm-qrcodes:latest .
-```
-
-### Run the container
-
-```bash
-docker run --rm -p 4278:4278 utm-qrcodes:latest
+docker run --rm -p 4278:4278 kmsigma/utm-qrcodes:latest
 ```
 
 Open `http://localhost:4278` in a browser.
@@ -77,7 +73,7 @@ Open `http://localhost:4278` in a browser.
 docker compose up -d
 ```
 
-This builds the image (if not already built) and starts the container in the background. The app is available at `http://localhost:4278`.
+Pulls the image from Docker Hub (if not already cached) and starts the container in the background. The app is available at `http://localhost:4278`.
 
 ### Stop
 
@@ -85,10 +81,10 @@ This builds the image (if not already built) and starts the container in the bac
 docker compose down
 ```
 
-### Rebuild after code changes
+### Update to the latest image
 
 ```bash
-docker compose up -d --build
+docker compose pull && docker compose up -d
 ```
 
 ### Configuration
@@ -103,6 +99,15 @@ To change the host port, edit the `ports` mapping in `docker-compose.yml`:
 ```yaml
 ports:
   - "80:4278" # expose on host port 80 instead
+```
+
+### Building from source
+
+If you want to modify the code and test your changes locally, build the image yourself:
+
+```bash
+docker build -t utm-qrcodes:local .
+docker run --rm -p 4278:4278 utm-qrcodes:local
 ```
 
 ### Production notes

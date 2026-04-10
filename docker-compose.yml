@@ -1,9 +1,6 @@
 services:
   qrcodes:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: utm-qrcodes:latest
+    image: kmsigma/utm-qrcodes:latest
     container_name: utm-qrcodes
     ports:
       - "4278:4278"
