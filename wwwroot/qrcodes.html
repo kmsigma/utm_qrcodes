@@ -2,9 +2,15 @@
 <html lang="en">
 
 <head>
+  <title>Campaign URL QR Code Builder</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Campaign URL QR Code Builder</title>
+  <meta property="og:title" content="Campaign URL QR Code Builder (Open Source, Docker)" />
+  <meta property="og:description" content="Open-source Campaign URL & QR Code Builder packaged as a self-contained .NET Docker image. Generate UTM-tracked URLs and custom QR codes instantly—no database, no sign-up, no external dependencies." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://github.com/kmsigma/utm_qrcodes/blob/main/wwwroot/assets/opengraph.png?raw=true" />
+  <meta property="og:url" content="https://github.com/kmsigma/utm_qrcodes" />
+
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
@@ -18,7 +24,8 @@
     <h1>Campaign URL QR Code Builder</h1>
     <button id="helpBtn" class="header-help-btn" aria-label="Open help" aria-expanded="false" aria-controls="helpPanel">
       <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
-        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
+        <path
+          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z" />
       </svg>
     </button>
   </header>
@@ -29,7 +36,8 @@
         <h2>Campaign Fields</h2>
         <button id="clearBtn" data-tooltip="Clear all fields" aria-label="Clear all fields">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293z" />
+            <path
+              d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293z" />
           </svg>
         </button>
       </div>
@@ -39,7 +47,8 @@
           <label>Website URL</label>
           <button type="button" class="help-btn" aria-label="Toggle help">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+              <path
+                d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
               <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
             </svg>
           </button>
@@ -53,7 +62,8 @@
           <label>Campaign ID (utm_id)</label>
           <button type="button" class="help-btn" aria-label="Toggle help">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+              <path
+                d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
               <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
             </svg>
           </button>
@@ -67,7 +77,8 @@
           <label>Campaign Source (utm_source)</label>
           <button type="button" class="help-btn" aria-label="Toggle help">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+              <path
+                d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
               <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
             </svg>
           </button>
@@ -81,7 +92,8 @@
           <label>Campaign Medium (utm_medium)</label>
           <button type="button" class="help-btn" aria-label="Toggle help">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+              <path
+                d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
               <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
             </svg>
           </button>
@@ -95,7 +107,8 @@
           <label>Campaign Name (utm_campaign)</label>
           <button type="button" class="help-btn" aria-label="Toggle help">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+              <path
+                d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
               <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
             </svg>
           </button>
@@ -109,7 +122,8 @@
           <label>Campaign Term (utm_term)</label>
           <button type="button" class="help-btn" aria-label="Toggle help">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+              <path
+                d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
               <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
             </svg>
           </button>
@@ -123,24 +137,29 @@
           <label>Campaign Content (utm_content)</label>
           <button type="button" class="help-btn" aria-label="Toggle help">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+              <path
+                d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
               <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
             </svg>
           </button>
         </div>
         <input id="utm_content" />
-        <div class="help-text">Used for A/B testing and content-targeted ads. Use utm_content to differentiate ads or links that point to the same URL.</div>
+        <div class="help-text">Used for A/B testing and content-targeted ads. Use utm_content to differentiate ads or
+          links that point to the same URL.</div>
       </div>
 
       <div class="field">
         <label>Optional Centered Image</label>
-        <small style="display:block;font-size:12px;color:var(--neutral-dark-gray);margin-bottom:6px">Square PNG only. Resized to 128×128 on upload.</small>
+        <small style="display:block;font-size:12px;color:var(--neutral-dark-gray);margin-bottom:6px">Square PNG only.
+          Resized to 128×128 on upload.</small>
         <div class="field">
           <div class="upload-wrap">
             <input type="file" id="centerUpload" accept="image/png" />
-            <button id="removeImageBtn" class="danger" data-tooltip="Remove center image" aria-label="Remove center image" style="display:none">
+            <button id="removeImageBtn" class="danger" data-tooltip="Remove center image"
+              aria-label="Remove center image" style="display:none">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                <path
+                  d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
               </svg>
             </button>
           </div>
@@ -159,20 +178,26 @@
         <div class="actions">
           <button id="shareBtn" data-tooltip="Copy share link" aria-label="Copy share link">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z"/>
-              <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z"/>
+              <path
+                d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z" />
+              <path
+                d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z" />
             </svg>
           </button>
           <button id="copyBtn" data-tooltip="Copy URL to clipboard" aria-label="Copy URL to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z" />
-              <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z" />
+              <path
+                d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z" />
+              <path
+                d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z" />
             </svg>
           </button>
           <button id="downloadBtn" data-tooltip="Download QR code as PNG" aria-label="Download QR code as PNG">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
-              <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
+              <path
+                d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+              <path
+                d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
             </svg>
           </button>
         </div>
@@ -183,7 +208,8 @@
         <input id="saveName" placeholder="Save name (optional)" />
         <button id="saveBtn" data-tooltip="Save to history" aria-label="Save to history">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v3.5A1.5 1.5 0 0 1 11.5 6h-7A1.5 1.5 0 0 1 3 4.5V1H1.5a.5.5 0 0 0-.5.5m3 0v3.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V1H4zM3 15h10v-4.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5zm7-14v3h1V1z" />
+            <path
+              d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v3.5A1.5 1.5 0 0 1 11.5 6h-7A1.5 1.5 0 0 1 3 4.5V1H1.5a.5.5 0 0 0-.5.5m3 0v3.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V1H4zM3 15h10v-4.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5zm7-14v3h1V1z" />
           </svg>
         </button>
       </div>
@@ -192,10 +218,13 @@
     <section class="col saved-list" id="savedList">
       <div class="col-header">
         <h2>Locally Saved URLs</h2>
-        <button id="clearHistoryBtn" data-tooltip="Delete all saved URLs" aria-label="Delete all saved URLs" style="display:none">
+        <button id="clearHistoryBtn" data-tooltip="Delete all saved URLs" aria-label="Delete all saved URLs"
+          style="display:none">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+            <path
+              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+            <path
+              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
           </svg>
         </button>
       </div>
@@ -204,7 +233,7 @@
   </main>
 
   <footer class="site-footer">
-    <small>Custom QR Builder for Campaigns.  Saves in your Browser Storage <code>{ localStorage }</code></small>
+    <small>Custom QR Builder for Campaigns. Saves in your Browser Storage <code>{ localStorage }</code></small>
   </footer>
 
   <div id="deleteItemModal" class="modal-overlay" hidden>
@@ -240,67 +269,86 @@
 
         <section class="help-section">
           <h3>Overview</h3>
-          <p>This tool builds <strong>UTM-tagged campaign URLs</strong> and generates a scannable <strong>QR code</strong> from them — ready to embed in print materials, emails, or ads. All processing happens in your browser; nothing is sent to any server.</p>
+          <p>This tool builds <strong>UTM-tagged campaign URLs</strong> and generates a scannable <strong>QR
+              code</strong> from them — ready to embed in print materials, emails, or ads. All processing happens in
+            your browser; nothing is sent to any server.</p>
         </section>
 
         <section class="help-section">
           <h3>UTM Parameters</h3>
-          <p>UTM parameters are small tags added to the end of a URL. Analytics platforms such as Google Analytics read them to tell you exactly where a visitor came from.</p>
+          <p>UTM parameters are small tags added to the end of a URL. Analytics platforms such as Google Analytics read
+            them to tell you exactly where a visitor came from.</p>
           <dl class="help-params">
             <dt>Website URL <span class="req-badge">required</span></dt>
-            <dd>The destination page, e.g. <code>https://example.com/landing</code>. If you paste a URL that already contains UTM tags, they are automatically extracted and dropped into the fields below.</dd>
+            <dd>The destination page, e.g. <code>https://example.com/landing</code>. If you paste a URL that already
+              contains UTM tags, they are automatically extracted and dropped into the fields below.</dd>
 
             <dt>Source &mdash; <code>utm_source</code> <span class="req-badge">required</span></dt>
-            <dd>The platform or referrer sending the visitor. Examples: <code>google</code>, <code>linkedin</code>, <code>newsletter</code>, <code>event_badge</code>.</dd>
+            <dd>The platform or referrer sending the visitor. Examples: <code>google</code>, <code>linkedin</code>,
+              <code>newsletter</code>, <code>event_badge</code>.</dd>
 
             <dt>Medium &mdash; <code>utm_medium</code> <span class="req-badge">required</span></dt>
-            <dd>The marketing channel type. Examples: <code>cpc</code>, <code>email</code>, <code>social</code>, <code>qr</code>, <code>print</code>.</dd>
+            <dd>The marketing channel type. Examples: <code>cpc</code>, <code>email</code>, <code>social</code>,
+              <code>qr</code>, <code>print</code>.</dd>
 
             <dt>Campaign Name &mdash; <code>utm_campaign</code></dt>
-            <dd>A label for the specific campaign or promotion. Examples: <code>spring_sale</code>, <code>product_launch_2025</code>.</dd>
+            <dd>A label for the specific campaign or promotion. Examples: <code>spring_sale</code>,
+              <code>product_launch_2025</code>.</dd>
 
             <dt>Campaign ID &mdash; <code>utm_id</code></dt>
-            <dd>A unique identifier for the campaign — useful when your ad platform assigns its own ID that you want to match in analytics.</dd>
+            <dd>A unique identifier for the campaign — useful when your ad platform assigns its own ID that you want to
+              match in analytics.</dd>
 
             <dt>Term &mdash; <code>utm_term</code></dt>
-            <dd>The paid-search keyword that triggered the ad. Examples: <code>running+shoes</code>, <code>cloud+security</code>.</dd>
+            <dd>The paid-search keyword that triggered the ad. Examples: <code>running+shoes</code>,
+              <code>cloud+security</code>.</dd>
 
             <dt>Content &mdash; <code>utm_content</code></dt>
-            <dd>Distinguishes multiple links or creatives in A/B tests pointing to the same URL. Examples: <code>banner_a</code>, <code>text_link</code>, <code>hero_cta</code>.</dd>
+            <dd>Distinguishes multiple links or creatives in A/B tests pointing to the same URL. Examples:
+              <code>banner_a</code>, <code>text_link</code>, <code>hero_cta</code>.</dd>
           </dl>
         </section>
 
         <section class="help-section">
           <h3>QR Code &amp; Actions</h3>
-          <p>The QR code is regenerated automatically as you type. It encodes the fully assembled campaign URL at 512 &times; 512 pixels.</p>
+          <p>The QR code is regenerated automatically as you type. It encodes the fully assembled campaign URL at 512
+            &times; 512 pixels.</p>
           <ul>
             <li><strong>Copy URL</strong> — copies the final tagged URL to your clipboard.</li>
-            <li><strong>Share</strong> — copies a link that opens this page with the form pre-filled. The center image (if any) is embedded in the link. No data is stored on a server.</li>
-            <li><strong>Download</strong> — saves the QR code as a PNG file. The filename is derived from the medium and campaign name you entered.</li>
+            <li><strong>Share</strong> — copies a link that opens this page with the form pre-filled. The center image
+              (if any) is embedded in the link. No data is stored on a server.</li>
+            <li><strong>Download</strong> — saves the QR code as a PNG file. The filename is derived from the medium and
+              campaign name you entered.</li>
           </ul>
         </section>
 
         <section class="help-section">
           <h3>Center Image</h3>
-          <p>Upload a <strong>square PNG</strong> (max 5 MB) to overlay in the centre of the QR code — typically a logo. The image is automatically resized to 128 &times; 128 px on upload.</p>
-          <p>QR codes use built-in error correction, so a small centered image does not break scannability. Aim to keep the overlay under ~25% of the QR code area.</p>
+          <p>Upload a <strong>square PNG</strong> (max 5 MB) to overlay in the centre of the QR code — typically a logo.
+            The image is automatically resized to 128 &times; 128 px on upload.</p>
+          <p>QR codes use built-in error correction, so a small centered image does not break scannability. Aim to keep
+            the overlay under ~25% of the QR code area.</p>
         </section>
 
         <section class="help-section">
           <h3>Saving &amp; History</h3>
-          <p>Campaigns are saved to your browser's <code>localStorage</code> — they persist between sessions on this device and browser, but are not synced to any other device or server. Up to 200 entries are kept.</p>
+          <p>Campaigns are saved to your browser's <code>localStorage</code> — they persist between sessions on this
+            device and browser, but are not synced to any other device or server. Up to 200 entries are kept.</p>
           <ul>
-            <li>Enter an optional <strong>Save name</strong>, then click the <strong>save icon</strong> to add the current configuration to your history.</li>
+            <li>Enter an optional <strong>Save name</strong>, then click the <strong>save icon</strong> to add the
+              current configuration to your history.</li>
             <li><strong>Hover</strong> over a saved item to see a preview of its URL and UTM parameters.</li>
             <li>Click the <strong>load icon</strong> to restore a saved campaign into the form.</li>
-            <li>Click the <strong>trash icon</strong> to delete a single entry, or use the bin icon in the column header to clear all history at once.</li>
+            <li>Click the <strong>trash icon</strong> to delete a single entry, or use the bin icon in the column header
+              to clear all history at once.</li>
           </ul>
         </section>
 
         <section class="help-section">
           <h3>Tips</h3>
           <ul>
-            <li>Use lowercase, underscores, and no spaces in UTM values to keep analytics data consistent — e.g. <code>spring_sale</code> not <code>Spring Sale</code>.</li>
+            <li>Use lowercase, underscores, and no spaces in UTM values to keep analytics data consistent — e.g.
+              <code>spring_sale</code> not <code>Spring Sale</code>.</li>
             <li>The <code>utm_medium</code> value <code>qr</code> is a common convention for QR-code campaigns.</li>
             <li>Test your QR code with a physical device before printing.</li>
             <li>Clearing browser data or switching browsers will remove your saved history.</li>
