@@ -1,0 +1,63 @@
+name: Build and Publish Docker Image
+
+on:
+  push:
+    branches:
+      - main          # pushes to main build and tag :latest
+    tags:
+      - 'v*.*.*'      # version tags (e.g. v1.0.0) build and tag with version numbers
+
+jobs:
+  build-and-push:
+    name: Build & Push to Docker Hub
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      # 1. Check out the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Set up QEMU so we can build for multiple CPU architectures
+      #    (linux/amd64 for standard servers, linux/arm64 for Raspberry Pi / Apple Silicon hosts)
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      # 3. Set up Docker Buildx (required for multi-platform builds and cache support)
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # 4. Log in to Docker Hub using secrets you'll add to the repo
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # 5. Generate Docker image tags and labels automatically
+      #    On a tag push of v1.2.3 this produces: 1.2.3, 1.2, 1, latest
+      #    On a push to main this produces: latest
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/utm-qrcodes
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      # 6. Build and push the image
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha      # use GitHub Actions cache to speed up rebuilds
+          cache-to: type=gha,mode=max
