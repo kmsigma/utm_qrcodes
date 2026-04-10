@@ -13,10 +13,11 @@ app.Use(async (ctx, next) =>
     ctx.Response.Headers["Referrer-Policy"] = "strict-origin-when-cross-origin";
     ctx.Response.Headers.ContentSecurityPolicy =
         "default-src 'self'; " +
-        "script-src 'self' https://cdn.jsdelivr.net; " +
+        "script-src 'self' https://cdn.jsdelivr.net https://static.cloudflareinsights.com; " +
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
         "font-src https://fonts.gstatic.com; " +
-        "img-src 'self' data: blob:;";
+        "img-src 'self' data: blob:; " +
+        "connect-src 'self' https://cloudflareinsights.com;";
     await next();
 });
 
