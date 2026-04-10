@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateProgramFile>false</GenerateProgramFile>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <AssemblyName>qrcodes</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Only compile the small launcher program for this project -->
+    <Compile Include="qrcodes.cs" />
+  </ItemGroup>
+  
+</Project>

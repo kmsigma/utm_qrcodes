@@ -1,0 +1,17 @@
+services:
+  qrcodes:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: utm-qrcodes:latest
+    container_name: utm-qrcodes
+    ports:
+      - "4278:4278"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
