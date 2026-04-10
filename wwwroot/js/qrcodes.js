@@ -778,3 +778,9 @@ helpPanel.querySelector(".help-panel-backdrop").addEventListener("click", closeH
 // Initialize — loadFromUrl is async (image decode), so chain updateAll after it resolves
 loadSaved();
 loadFromUrl().then(() => updateAll());
+
+// Populate footer version badge from the /version endpoint
+fetch('/version')
+  .then(r => r.json())
+  .then(d => { const el = document.getElementById('appVersion'); if (el && d.version) el.textContent = `v${d.version}`; })
+  .catch(() => {});

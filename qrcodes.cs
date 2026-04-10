@@ -23,6 +23,10 @@ app.Use(async (ctx, next) =>
 // Health check endpoint — used by Docker and load balancers to verify the app is running
 app.MapGet("/healthz", () => Results.Ok(new { status = "healthy" }));
 
+// Version endpoint — returns the APP_VERSION build arg injected at image build time
+var appVersion = Environment.GetEnvironmentVariable("APP_VERSION") ?? "dev";
+app.MapGet("/version", () => Results.Ok(new { version = appVersion }));
+
 // Serve qrcodes.html as the default document instead of index.html
 var defaultFiles = new DefaultFilesOptions();
 defaultFiles.DefaultFileNames.Clear();

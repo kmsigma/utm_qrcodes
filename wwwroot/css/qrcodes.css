@@ -52,7 +52,38 @@ body {
 }
 
 .site-footer {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 8px;
   font-size: 12px
+}
+
+.footer-version {
+  text-align: center;
+  font-size: 11px;
+  opacity: 0.7;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Courier New', monospace
+}
+
+.footer-links {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  align-items: center
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.15s
+}
+
+.footer-links a:hover {
+  color: #fff
 }
 
 .container {
@@ -495,6 +526,16 @@ button:focus-visible {
 @media(max-width:700px) {
   .container {
     grid-template-columns: 1fr
+  }
+
+  .site-footer {
+    grid-template-columns: 1fr;
+    row-gap: 6px;
+    text-align: center
+  }
+
+  .footer-links {
+    justify-content: center
   }
 }
 

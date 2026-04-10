@@ -1,5 +1,8 @@
 # syntax=docker/dockerfile:1
 
+# Declare globally so it is available in the runtime stage (re-declared below)
+ARG APP_VERSION=dev
+
 # ── Build stage ─────────────────────────────────────────────────────────────
 FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
 WORKDIR /src
@@ -27,6 +30,8 @@ COPY wwwroot ./wwwroot
 
 ENV ASPNETCORE_URLS=http://+:4278
 ENV ASPNETCORE_ENVIRONMENT=Production
+ARG APP_VERSION
+ENV APP_VERSION=$APP_VERSION
 EXPOSE 4278
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
