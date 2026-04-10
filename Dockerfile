@@ -29,4 +29,7 @@ ENV ASPNETCORE_URLS=http://+:4278
 ENV ASPNETCORE_ENVIRONMENT=Production
 EXPOSE 4278
 
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+    CMD wget --quiet --tries=1 --spider http://localhost:4278/healthz || exit 1
+
 ENTRYPOINT ["dotnet", "qrcodes.dll"]

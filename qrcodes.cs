@@ -20,6 +20,9 @@ app.Use(async (ctx, next) =>
     await next();
 });
 
+// Health check endpoint — used by Docker and load balancers to verify the app is running
+app.MapGet("/healthz", () => Results.Ok(new { status = "healthy" }));
+
 // Serve qrcodes.html as the default document instead of index.html
 var defaultFiles = new DefaultFilesOptions();
 defaultFiles.DefaultFileNames.Clear();

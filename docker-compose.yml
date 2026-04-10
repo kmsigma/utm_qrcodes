@@ -5,7 +5,14 @@ services:
     ports:
       - "4278:4278"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=${ASPNETCORE_URLS:-http://+:4278}
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT:-Development}
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:4278/healthz"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
     restart: unless-stopped
     read_only: true
     tmpfs:
