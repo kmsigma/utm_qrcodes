@@ -7,6 +7,9 @@ on:
     tags:
       - 'v*.*.*'      # version tags (e.g. v1.0.0) build and tag with version numbers
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true   # opt into Node.js 24 ahead of the June 2026 forced migration
+
 jobs:
   build-and-push:
     name: Build & Push to Docker Hub
