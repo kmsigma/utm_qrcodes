@@ -28,11 +28,13 @@ app.MapGet("/healthz", () => Results.Ok(new { status = "healthy" }));
 var appVersion = Environment.GetEnvironmentVariable("APP_VERSION") ?? "dev";
 app.MapGet("/version", () => Results.Ok(new { version = appVersion }));
 
-// Serve qrcodes.html as the default document instead of index.html
-var defaultFiles = new DefaultFilesOptions();
-defaultFiles.DefaultFileNames.Clear();
-defaultFiles.DefaultFileNames.Add("qrcodes.html");
-app.UseDefaultFiles(defaultFiles);
+// Serve the index page with the version injected at startup rather than fetched at runtime.
+// Reading once here avoids a JS fetch() that Cloudflare and other proxies can silently block.
+var indexPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "qrcodes.html");
+var indexHtml = File.ReadAllText(indexPath).Replace("__APP_VERSION__", appVersion);
+app.MapGet("/", () => Results.Content(indexHtml, "text/html; charset=utf-8"));
+
+// Serve all other static assets (CSS, JS, images, fonts, etc.)
 app.UseStaticFiles();
 
 app.Run();

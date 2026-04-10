@@ -779,8 +779,9 @@ helpPanel.querySelector(".help-panel-backdrop").addEventListener("click", closeH
 loadSaved();
 loadFromUrl().then(() => updateAll());
 
-// Populate footer version badge from the /version endpoint
-fetch('/version')
-  .then(r => r.json())
-  .then(d => { const el = document.getElementById('appVersion'); if (el && d.version) el.textContent = `v${d.version}`; })
-  .catch(() => {});
+// Populate footer version badge from the meta tag injected by the server at startup
+const versionMeta = document.querySelector('meta[name="app-version"]');
+const versionEl = document.getElementById('appVersion');
+if (versionEl && versionMeta?.content && !versionMeta.content.startsWith('__')) {
+  versionEl.textContent = `v${versionMeta.content}`;
+}
